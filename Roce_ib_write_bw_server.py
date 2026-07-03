@@ -44,7 +44,7 @@ DEVICES = [
 
 # ib_write_bw 的固定参数
 IB_PORT = "1"
-QUEUE_DEPTH = "64"
+QUEUE_DEPTH = "32"
 
 MESSAGE_SIZE = "4096"
 QP_COUNT = "64"
@@ -115,10 +115,12 @@ def main():
             "-R",
             "-F",
             "-q", QUEUE_DEPTH,
-            "-s", "64K",
+            "--tos", "162",
+            "-s", "128K",
             "--report_gbits",
-            "--run_infinitely",
+            # "--run_infinitely",
             "-p", str(port),
+            "-D", str(duration)
         ]
 
         log_file_name = device + "_port_" + str(port) + ".log"

@@ -48,7 +48,7 @@ TESTS = [
 # ib_write_bw 的固定参数
 IB_PORT = "1"
 MESSAGE_SIZE = "4096"
-QUEUE_DEPTH = "64"
+QUEUE_DEPTH = "32"
 
 # 默认持续时间。也可以在命令行第一个参数中覆盖。
 DEFAULT_DURATION = 120
@@ -117,12 +117,13 @@ def main():
             "-F",
             "-q", QUEUE_DEPTH,
             "--tos", "162",
-            "-s", "64K",
+            "-s", "128K",
             "--report_gbits",
-            "--run_infinitely",
+            # "--run_infinitely",
             server_ip,
             "--bind_source_ip", local_ip,
             "-p", str(port),
+            "-D", str(duration)
         ]
 
         log_file_name = (
